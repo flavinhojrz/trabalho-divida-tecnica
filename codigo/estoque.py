@@ -17,19 +17,27 @@ def add(n, p, q, hist=[]):
 
 
 def vender(nome, quantidade):
+    # Validação da quantidade
+    if quantidade <= 0:
+        print("Quantidade invalida. A quantidade deve ser maior que zero.")
+        return 0
+
     for i in range(len(produtos)):
         if produtos[i]["nome"] == nome:
             if produtos[i]["qtd"] >= quantidade:
                 produtos[i]["qtd"] = produtos[i]["qtd"] - quantidade
                 total = produtos[i]["preco"] * quantidade
+
                 # desconto pra compras grandes
                 if total > 100:
                     total = total - total * 0.1
+
                 print("Venda realizada. Total: " + str(total))
                 return total
             else:
                 print("Estoque insuficiente")
                 return 0
+
     print("Produto nao encontrado")
     return 0
 
