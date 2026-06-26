@@ -80,27 +80,47 @@ def menu():
     while True:
         print("\n1-Cadastrar  2-Vender  3-Listar  4-Estoque baixo  5-Admin  0-Sair")
         op = input("Opcao: ")
+
         if op == "1":
             n = input("Nome: ")
-            p = float(input("Preco: "))
-            q = int(input("Qtd: "))
+
+            try:
+                p = float(input("Preco: "))
+                q = int(input("Qtd: "))
+            except ValueError:
+                print("Entrada invalida. Informe um preco e uma quantidade validos.")
+                continue
+
             add(n, p, q)
+
         elif op == "2":
             n = input("Nome do produto: ")
-            q = int(input("Quantidade: "))
+
+            try:
+                q = int(input("Quantidade: "))
+            except ValueError:
+                print("Quantidade invalida.")
+                continue
+
             vender(n, q)
+
         elif op == "3":
             listar()
+
         elif op == "4":
             relatorio_estoque_baixo()
+
         elif op == "5":
             s = input("Senha: ")
+
             if s == SENHA_ADMIN:
                 print("Acesso liberado")
             else:
                 print("Senha errada")
+
         elif op == "0":
             break
+
         else:
             print("Opcao invalida")
 

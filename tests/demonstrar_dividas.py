@@ -48,7 +48,9 @@ def demonstrar_entrada_invalida_no_preco(caminho_arquivo):
     entradas = "\n".join([
         "1",
         "ProdutoTeste",
-        "abc"
+        "abc",
+
+        "0"
     ]) + "\n"
 
     resultado = executar_programa(caminho_arquivo, entradas)
@@ -59,8 +61,16 @@ def demonstrar_entrada_invalida_no_preco(caminho_arquivo):
         print("\nErro capturado:")
         print(resultado.stderr)
 
-    if resultado.returncode != 0:
-        print("[EVIDÊNCIA] O sistema encerrou com erro ao receber preço inválido.")
+    if "Entrada invalida" in resultado.stdout:
+        print("[OK] Mensagem de erro exibida ao usuário.")
+
+    if resultado.returncode == 0:
+        print("[OK] O sistema tratou a entrada inválida corretamente.")
+    else:
+        print("[ERRO] O sistema ainda encerrou inesperadamente.")
+        print(resultado.stderr)
+    
+    
 
 
 def main():
